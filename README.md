@@ -1,0 +1,2 @@
+# szakdolgozat_demo_v001
+Szakdolgozat_demo_version_001
