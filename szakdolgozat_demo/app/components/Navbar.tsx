@@ -2,6 +2,9 @@
 import React, { useState,useRef , useEffect } from "react";
 import { useRouter } from "next/navigation"; 
 import { FaUser, FaSearch, FaShoppingBag, FaBars, FaTimes } from "react-icons/fa";
+import Image from "next/image";
+import Link from "next/link"; // Link komponens importálása
+
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -10,6 +13,108 @@ const Navbar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+
+
+
+
+
+
+
+  const menuItems = {
+      "FOR HIM": {
+    path: "/for-him",
+    sections: [
+      {
+        title: "PRODUCTS",
+        items: [
+          { name: "Tanks", path: "/for-him/tanks" },
+          { name: "Shirts", path: "/for-him/shirts" },
+          { name: "Long Sleeves", path: "/for-him/long-sleeves" },
+          { name: "Shorts", path: "/for-him/shorts" },
+          { name: "Pants/Jeans", path: "/for-him/pants-jeans" },
+          { name: "Outerwear", path: "/for-him/outerwear" },
+          { name: "Joggers", path: "/for-him/joggers" },
+          { name: "Hats/Beanies", path: "/for-him/hats-beanies" },
+          { name: "Accessories", path: "/for-him/accessories" },
+          { name: "All Products", path: "/for-him/all-products" },
+        ],
+      },
+      {
+        title: "FEATURED",
+        items: [
+          { name: "Preview New Drop", path: "/for-him/preview-new-drop" },
+          { name: "New Drop", path: "/for-him/new-drop" },
+          { name: "Restock", path: "/for-him/restock" },
+          { name: "Best Sellers", path: "/for-him/best-sellers" },
+          { name: "SALE", path: "/for-him/sale" },
+        ],
+      },
+    ],
+  },
+
+  "FOR HER": {
+    path: "/for-her",
+    sections: [
+      {
+        title: "PRODUCTS",
+        items: [
+          { name: "Tanks", path: "/for-her/tanks" },
+          { name: "Shirts", path: "/for-her/shirts" },
+          { name: "Long Sleeves", path: "/for-her/long-sleeves" },
+          { name: "Shorts", path: "/for-her/shorts" },
+          { name: "Pants/Jeans", path: "/for-her/pants-jeans" },
+          { name: "Outerwear", path: "/for-her/outerwear" },
+          { name: "Joggers", path: "/for-her/joggers" },
+          { name: "Hats/Beanies", path: "/for-her/hats-beanies" },
+          { name: "Accessories", path: "/for-her/accessories" },
+          { name: "All Products", path: "/for-her/all-products" },
+        ],
+      },
+      {
+        title: "FEATURED",
+        items: [
+          { name: "Preview New Drop", path: "/for-her/preview-new-drop" },
+          { name: "New Drop", path: "/for-her/new-drop" },
+          { name: "Restock", path: "/for-her/restock" },
+          { name: "Best Sellers", path: "/for-her/best-sellers" },
+          { name: "SALE", path: "/for-her/sale" },
+        ],
+      },
+    ],
+  },
+
+  "NEW DROP": {
+    path: "/new-drop",
+    sections: [
+      {
+        title: "PRODUCTS",
+        items: [
+          { name: "Tanks", path: "/new-drop/tanks" },
+          { name: "Shirts", path: "/new-drop/shirts" },
+          { name: "Long Sleeves", path: "/new-drop/long-sleeves" },
+          { name: "Shorts", path: "/new-drop/shorts" },
+          { name: "Pants/Jeans", path: "/new-drop/pants-jeans" },
+          { name: "Outerwear", path: "/new-drop/outerwear" },
+          { name: "Joggers", path: "/new-drop/joggers" },
+          { name: "Hats/Beanies", path: "/new-drop/hats-beanies" },
+          { name: "Accessories", path: "/new-drop/accessories" },
+          { name: "All Products", path: "/new-drop/all-products" },
+        ],
+      },
+      {
+        title: "FEATURED",
+        items: [
+          { name: "Preview New Drop", path: "/new-drop/preview-new-drop" },
+          { name: "New Drop", path: "/new-drop/new-drop" },
+          { name: "Restock", path: "/new-drop/restock" },
+          { name: "Best Sellers", path: "/new-drop/best-sellers" },
+          { name: "SALE", path: "/new-drop/sale" },
+        ],
+      },
+    ],
+  },
+};
+
 
   // Ha a kereső nyitva van, fókusz az input mezőre
   useEffect(() => {
@@ -34,50 +139,110 @@ const Navbar = () => {
     setSearchOpen(false);
   };
 
+   // Mutatja a dropdown menüt, ha fölé viszik az egeret
+   const handleMouseEnter = (menu: string) => {
+    clearTimeout(dropdownTimeout);
+    setDropdownOpen(menu);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeout = setTimeout(() => {
+      setDropdownOpen(null);
+    }, 200); // 200ms késleltetés
+  };
+
 
   return (
     <>
       {/* Top Navigation Bar */}
       <nav className="w-full bg-white font-inter font-mono text-black flex justify-between items-center px-6 lg:px-16 py-4 border-b border-gray-200 relative">
         {/* Bal oldali menü (Desktop) */}
-        <div className="hidden lg:flex space-x-6 text-xs md:text-sm font-semibold tracking-wider">
-          {["FOR HIM", "FOR HER", "NEW DROP"].map((item) => (
-            <div
-              key={item}
-              className="relative"
-              onMouseEnter={() => {
-                clearTimeout(dropdownTimeout);
-                setDropdownOpen(item);
-              }}
-              onMouseLeave={() => {
-                dropdownTimeout = setTimeout(() => setDropdownOpen(null), 200);
-              }}
-            >
-              <button className="hover:text-gray-700">{item} ▼</button>
+       
+       
+       
 
-              {/* Dropdown Menü */}
-              <div
-                className={`absolute left-0 mt-2 w-44 bg-white shadow-lg rounded-lg z-50 transition-opacity duration-200 ${
-                  dropdownOpen === item ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
-                }`}
-                onMouseEnter={() => clearTimeout(dropdownTimeout)}
-                onMouseLeave={() => setDropdownOpen(null)}
-              >
-                <ul className="py-2 text-sm text-gray-700">
-                  <li className="px-4 py-2 hover:bg-gray-100">
-                    <a href="#">TOPS</a>
-                  </li>
-                  <li className="px-4 py-2 hover:bg-gray-100">
-                    <a href="#">Bottoms</a>
-                  </li>
-                  <li className="px-4 py-2 hover:bg-gray-100">
-                    <a href="#">Accessories</a>
-                  </li>
+
+
+
+
+
+
+       
+       
+{/* Bal oldali menü (Desktop) */}
+<div className="hidden lg:flex space-x-6 text-xs md:text-sm font-semibold tracking-wider">
+  {Object.keys(menuItems).map((category) => (
+    <div
+      key={category}
+      className="relative group"
+      onMouseEnter={() => handleMouseEnter(category)}
+      onMouseLeave={handleMouseLeave}
+    >
+      <Link href={menuItems[category].path} className="hover:text-gray-700">
+        {category} ▼
+      </Link>
+
+      {/* Dropdown Menu */}
+      {dropdownOpen === category && (
+        <div className="absolute left-0 top-full mt-2 w-[900px] bg-white shadow-lg rounded-md p-6 z-50 border border-gray-200">
+          <div className="grid grid-cols-3 gap-8">
+            {/* Sections (PRODUCTS & FEATURED) */}
+            {menuItems[category].sections.map((section) => (
+              <div key={section.title}>
+                <h3 className="text-xs font-bold text-gray-700 uppercase mb-2">
+                  {section.title}
+                </h3>
+                <ul className="space-y-2 text-sm text-gray-600">
+                {section.items.map(({ name, path }) => (
+                <li key={name} className="hover:text-black transition">
+                  <Link href={`${menuItems[category].path}${path.replace(/^\/[^/]+/, "")}`}>
+                   {name}
+                 </Link>
+                </li>
+        ))}
+
                 </ul>
               </div>
+            ))}
+
+            {/* Dynamic Image & Title Section */}
+            <div className="text-center">
+              <Image
+                src={
+                  category === "FOR HIM"
+                    ? "/mens-drop.jpg"
+                    : category === "FOR HER"
+                    ? "/womens-drop.jpg"
+                    : "/new-drop.jpg"
+                }
+                alt={category}
+                width={250}
+                height={250}
+                className="rounded-md"
+              />
+              <p className="text-xs text-gray-600 mt-2 font-bold">
+                {category === "FOR HIM"
+                  ? "MEN'S NEW DROP"
+                  : category === "FOR HER"
+                  ? "HER'S NEW DROP"
+                  : "NEW DROP"}
+              </p>
             </div>
-          ))}
+          </div>
         </div>
+      )}
+    </div>
+  ))}
+</div>
+
+
+
+
+
+
+
+
+
 
         {/* Középen a logó */}
         <h1 className="text-2xl md:text-3xl font-bold tracking-widest">LIVETHE-FIT</h1>
