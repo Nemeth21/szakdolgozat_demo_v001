@@ -1,7 +1,7 @@
 "use client";
 import React, { useState,useRef , useEffect } from "react";
 import { useRouter } from "next/navigation"; 
-import { FaUser, FaSearch, FaShoppingBag, FaBars, FaTimes } from "react-icons/fa";
+import { FaUser, FaSearch, FaShoppingBag, FaBars, FaTimes, FaGlobe  } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link"; // Link komponens importálása
 
@@ -10,10 +10,14 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
   let dropdownTimeout: NodeJS.Timeout;
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false); // Új: Nyelvválasztó dropdown állapota
   const [searchOpen, setSearchOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
+   // 🔹 **Nyelv Dropdown Nyitás/Zárás**
+   const toggleLangDropdown = () => setLangDropdownOpen((prev) => !prev);
+   const closeLangDropdown = () => setLangDropdownOpen(false);
 
 
 
@@ -286,11 +290,59 @@ const Navbar = () => {
         />
       </div>
 
-          {/* Amerikai zászló és országválasztó */}
-          <div className="hidden lg:flex items-center space-x-1 cursor-pointer">
-            <img src="/icons/logo.webp" alt="US Flag" className="w-6 h-6" />
-            <span className="text-xs md:text-sm">US ▼</span>
+
+
+
+         {/* 🔹 🌍 NYELVVÁLASZTÓ */}
+         <div className="relative">
+            <button
+              className="flex items-center space-x-1 cursor-pointer px-3 py-1 rounded-md border border-gray-300 bg-white hover:bg-gray-100 transition"
+              onClick={toggleLangDropdown}
+            >
+              <FaGlobe className="text-lg" />
+              <span className="text-xs md:text-sm">US ▼</span>
+            </button>
+
+            {/* 🔹 DROPDOWN MENÜ */}
+            {langDropdownOpen && (
+              <div
+                className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 shadow-md rounded-md p-2 z-50 transition-opacity duration-200 opacity-100"
+                onMouseLeave={closeLangDropdown} // Kilépésre bezár
+              >
+                {/* 🌍 Nyelvek */}
+                <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  🇺🇸 English (US)
+                </Link>
+                <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  🇭🇺 Magyar
+                </Link>
+                <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  🇷🇴 Română
+                </Link>
+                <hr className="my-2 border-gray-200" />
+                
+                {/* ⚙️ Egyéb menüpontok */}
+                <Link href="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  - Profilom
+                </Link>
+                <Link href="/contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  - Kapcsolat
+                </Link>
+                <Link href="/terms" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  - Szerzői jogok
+                </Link>
+                <Link href="/cookies" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  - Süti kezelés
+                </Link>
+              </div>
+            )}
           </div>
+
+
+
+
+
+
 
           {/* Hamburger Menü Gomb (Tablet és Mobil) */}
           <button className="lg:hidden text-2xl" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
