@@ -49,7 +49,7 @@ const SecondNavbar = () => {
         </Link>
 
         {/* 🔹 Email Sign Up */}
-        <Link href="/signup" className="hover:text-black px-2 border-r border-gray-300">
+        <Link href="/newsletter" className="hover:text-black px-2 border-r border-gray-300">
           Email Sign Up
         </Link>
 
