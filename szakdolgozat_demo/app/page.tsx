@@ -4,6 +4,7 @@ import HeroSection from "./components/HeroSection";
 import ProductGrid from "./components/ProductGrid";
 import Footer from "./components/Footer";
 import SecondNavbar from "./components/SecondNavbar";
+import FooterBottom from "./components/FooterBottom";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <HeroSection />
       <ProductGrid />
       <Footer />
+      <FooterBottom />  
     </div>
   );
 }
