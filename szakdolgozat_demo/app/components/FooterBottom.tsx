@@ -1,7 +1,12 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
+import {useRouter} from "next/navigation";
 
 const FooterBottom = () => {
+
+const router = useRouter();
+
   const [selectedCountry, setSelectedCountry] = useState("US");
   const [selectedLanguage, setSelectedLanguage] = useState("English");
 
@@ -20,7 +25,9 @@ const FooterBottom = () => {
 
   {/* 🔹 Jobb oldal - Linkek */}
   <div className="flex space-x-3 text-xs md:text-sm text-gray-600">
-    <a href="#" className="hover:underline">Terms & Conditions</a>
+    <a href="#" className="hover:underline"
+      onClick={() => router.push("/terms-and-conditions")}
+    >Terms & Conditions</a>
     <a href="#" className="hover:underline">Terms of Use</a>
     <a href="#" className="hover:underline">Cookie Policy</a>
   </div>
