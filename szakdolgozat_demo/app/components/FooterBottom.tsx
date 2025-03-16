@@ -28,8 +28,10 @@ const router = useRouter();
     <a href="#" className="hover:underline"
       onClick={() => router.push("/terms-and-conditions")}
     >Terms & Conditions</a>
-    <a href="#" className="hover:underline">Terms of Use</a>
-    <a href="#" className="hover:underline">Cookie Policy</a>
+    <a href="#" className="hover:underline"
+    onClick={() => router.push("terms-of-use")}>Terms of Use</a>
+    <a href="#" className="hover:underline"
+    onClick={() => router.push("cookie-policy")}>Cookie Policy</a>
   </div>
 </div>
 

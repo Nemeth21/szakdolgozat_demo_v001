@@ -9,7 +9,7 @@ const getCurrentDate = () => {
   return today.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
 };
 
-const TermsOfUse = () => {
+const CookiePolicy = () => {
   const router = useRouter();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [visibleSections, setVisibleSections] = useState<{ [key: string]: boolean }>({});
@@ -60,8 +60,8 @@ const TermsOfUse = () => {
                 </a>
               </li>
               <li>
-                <a href="/cookie-policy" className="block px-4 py-2 hover:bg-gray-100">
-                  Cookie Policy
+                <a href="/terms-of-use" className="block px-4 py-2 hover:bg-gray-100">
+                  Terms of Use
                 </a>
               </li>
             </ul>
@@ -71,7 +71,7 @@ const TermsOfUse = () => {
 
       {/* 🔹 Fő cím */}
       <h1 className="text-5xl md:text-6xl font-extrabold text-black text-center mt-12 fade-in-section" id="title">
-        TERMS OF USE
+        COOKIE POLICY 🍪
       </h1>
 
       {/* 🔹 Frissítés dátuma */}
@@ -83,78 +83,83 @@ const TermsOfUse = () => {
       <div className="w-full flex justify-end">
         <div 
           className="w-1/2 h-96 bg-cover bg-center rounded-lg shadow-lg mt-8 fade-in-section"
-          style={{ backgroundImage: "url('/terms-use1.jpg')" }}
+          style={{ backgroundImage: "url('/cookies1.jpg')" }}
         ></div>
       </div>
 
       {/* 🔹 Szöveg blokk */}
       <div className="max-w-4xl text-gray-800 mt-8 space-y-6 text-justify leading-relaxed">
         <p className="fade-in-section">
-          Welcome to LIVETHEFIT. These Terms of Use govern your access to and use of our website, mobile applications, and related services. 
-          By continuing to use our platform, you agree to these terms in full.
+          Welcome to LIVETHEFIT’s Cookie Policy. This document explains how we use cookies and similar tracking technologies 
+          on our website to enhance your experience, personalize content, and improve security.
         </p>
 
         <p className="fade-in-section">
-          If you do not agree with any of these terms, please refrain from using our services. We reserve the right to modify these Terms of Use at any time.
+          Cookies are small text files that help us understand user behavior, track performance, and provide targeted ads.
+          By continuing to browse our site, you agree to our cookie usage.
         </p>
 
         <div className="w-full flex justify-start">
           <div 
             className="w-1/2 h-96 bg-cover bg-center rounded-lg shadow-lg mt-8 fade-in-section"
-            style={{ backgroundImage: "url('/terms-use2.jpg')" }}
+            style={{ backgroundImage: "url('/cookies2.jpg')" }}
           ></div>
         </div>
 
-        {/* 📌 1. Acceptance of Terms */}
-        <h2 className="text-xl font-bold mt-6 fade-in-section">1. ACCEPTANCE OF TERMS</h2>
+        {/* 📌 1. What Are Cookies? */}
+        <h2 className="text-xl font-bold mt-6 fade-in-section">1. WHAT ARE COOKIES? 🍪</h2>
         <p className="fade-in-section">
-          You agree that by accessing and using LIVETHEFIT, you accept and agree to comply with these Terms of Use. We provide our services solely for personal, non-commercial use.
+          Cookies are small files stored on your device that allow websites to remember information about you. These can include your preferences, 
+          login details, and browsing history to provide a personalized experience.
         </p>
 
         <p className="fade-in-section">
-          Failure to adhere to these terms may result in the termination of your account or restricted access to our platform.
+          There are different types of cookies, including session cookies (which expire after you close your browser) and persistent cookies (which stay 
+          on your device for a defined period).
         </p>
 
         <div className="w-full flex justify-end">
           <div 
             className="w-1/2 h-96 bg-cover bg-center rounded-lg shadow-lg mt-8 fade-in-section"
-            style={{ backgroundImage: "url('/terms-use3.jpg')" }}
+            style={{ backgroundImage: "url('/cookies3.jpg')" }}
           ></div>
         </div>
 
-        {/* 📌 2. User Accounts & Responsibilities */}
-        <h2 className="text-xl font-bold mt-6 fade-in-section">2. USER ACCOUNTS & RESPONSIBILITIES</h2>
+        {/* 📌 2. Why We Use Cookies */}
+        <h2 className="text-xl font-bold mt-6 fade-in-section">2. WHY WE USE COOKIES? 🎯</h2>
         <p className="fade-in-section">
-          When you create an account with LIVETHEFIT, you are responsible for maintaining the confidentiality of your login credentials.
-          Any unauthorized use of your account must be reported immediately.
+          We use cookies to enhance the user experience in several ways:
         </p>
-
-        <p className="fade-in-section">
-          LIVETHEFIT reserves the right to disable or remove accounts that violate our terms, engage in fraudulent activity, or compromise security.
-        </p>
+        <ul className="fade-in-section list-disc pl-6">
+          <li>- Remember your login details for seamless access.</li>
+          <li>- Analyze website traffic to improve performance.</li>
+          <li>- Personalize content based on your interests.</li>
+          <li>- Deliver targeted advertisements that match your preferences.</li>
+        </ul>
 
         <div className="w-full flex justify-start">
           <div 
             className="w-1/2 h-96 bg-cover bg-center rounded-lg shadow-lg mt-8 fade-in-section"
-            style={{ backgroundImage: "url('/terms-use4.jpg')" }}
+            style={{ backgroundImage: "url('/cookies4.jpg')" }}
           ></div>
         </div>
 
-        {/* 📌 3. Intellectual Property */}
-        <h2 className="text-xl font-bold mt-6 fade-in-section">3. INTELLECTUAL PROPERTY RIGHTS</h2>
+        {/* 📌 3. Managing Your Cookie Preferences */}
+        <h2 className="text-xl font-bold mt-6 fade-in-section">3. MANAGING YOUR COOKIE PREFERENCES ⚙️</h2>
         <p className="fade-in-section">
-          All content on LIVETHEFIT, including images, graphics, logos, and text, is the exclusive property of LIVETHEFIT and is protected under copyright laws.
+          You have the right to manage and control cookie usage on our website. Here’s how:
         </p>
-
-        <p className="fade-in-section">
-          Unauthorized reproduction, distribution, or modification of any content is strictly prohibited.
-        </p>
+        <ul className="fade-in-section list-disc pl-6">
+          <li>- Adjust your browser settings to block or delete cookies.</li>
+          <li>- Use our Cookie Settings panel to opt-in or out of specific cookies.</li>
+          <li>- Review third-party cookie policies when using external services.</li>
+        </ul>
 
         {/* 📌 Footer */}
         <footer className="w-full mt-12 border-t border-gray-300 pt-6 pb-4 text-center text-gray-600 text-sm">
           <p>
             © 2025 | LIVETHEFIT Limited | All Rights Reserved |{" "}
-            <span className="text-orange-500 font-bold">Train Hard, Live Fit</span>.
+            <span className="text-orange-500 font-bold">Eat Clean, Train Mean</span>.
           </p>
         </footer>
       </div>
@@ -162,4 +167,4 @@ const TermsOfUse = () => {
   );
 };
 
-export default TermsOfUse;
+export default CookiePolicy;
