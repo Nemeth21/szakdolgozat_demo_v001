@@ -31,7 +31,7 @@ const router = useRouter();
     <a href="#" className="hover:underline"
     onClick={() => router.push("terms-of-use")}>Terms of Use</a>
     <a href="#" className="hover:underline"
-    onClick={() => router.push("cookie-policy")}>Cookie Policy</a>
+    onClick={() => router.push("cookie-policy")}>Cookie Policy |</a>
   </div>
 </div>
 
@@ -44,7 +44,7 @@ const router = useRouter();
           onChange={(e) => setSelectedCountry(e.target.value)}
           className="bg-transparent text-gray-600 focus:outline-none cursor-pointer text-xs md:text-sm"
         >
-          <option value="US">🇺🇸 US</option>
+          <option value="US"> 🇺🇸 US </option>
           <option value="UK">🇬🇧 UK</option>
           <option value="DE">🇩🇪 DE</option>
           <option value="FR">🇫🇷 FR</option>
