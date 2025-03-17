@@ -1,7 +1,37 @@
 "use client";
+
 import { useState, useEffect, useRef } from "react";
 
 export default function Chatbot() {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([{ text: "👋 Hi! How can I assist you today?", sender: "bot" }]);
   const [input, setInput] = useState("");
@@ -22,7 +52,7 @@ export default function Chatbot() {
     if (lowerMessage.includes("support")) return "🔧 Our support team is available 24/7. Contact us at support@example.com.";
     if (lowerMessage.includes("thank you") || lowerMessage.includes("thanks")) return "You're welcome! Have a great day! 🎉";
     
-    return "I'm not sure about that 🤔, but our support team is always happy to help!";
+    return "I'm not sure about that kurva anyam but our support team is always happy to help!";
   };
 
   // 🔹 Üzenet küldése
@@ -35,7 +65,7 @@ export default function Chatbot() {
 
     setTimeout(() => {
       const botResponse = getBotResponse(input);
-      setMessages((prev) => [...prev, { text: botResponse, sender: "bot" }]);
+      setMessages( (prev) => [...prev, { text: botResponse, sender: "bot" }]);
     }, 1000);
   };
 
