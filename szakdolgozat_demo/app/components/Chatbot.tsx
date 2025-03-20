@@ -4,34 +4,6 @@ import { useState, useEffect, useRef } from "react";
 
 export default function Chatbot() {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([{ text: "👋 Hi! How can I assist you today?", sender: "bot" }]);
   const [input, setInput] = useState("");
