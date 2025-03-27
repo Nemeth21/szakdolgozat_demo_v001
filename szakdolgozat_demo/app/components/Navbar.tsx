@@ -98,7 +98,7 @@ const Navbar = () => {
           { name: "Long Sleeves", path: "/new-drop/long-sleeves" },
           { name: "Shorts", path: "/new-drop/shorts" },
           { name: "Pants/Jeans", path: "/new-drop/pants-jeans" },
-          { name: "Outerwear ❗", path: "/new-drop/outerwear" },
+          { name: "Outerwear ❗ ", path: "/new-drop/outerwear" },
           { name: "Joggers ❗", path: "/new-drop/joggers" },
           { name: "Hats/Beanies", path: "/new-drop/hats-beanies" },
           { name: "Accessories ❗", path: "/new-drop/accessories" },
