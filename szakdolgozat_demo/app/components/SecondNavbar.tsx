@@ -47,6 +47,11 @@ const SecondNavbar = () => {
           Email Sign Up
         </Link>
 
+        {/* 🔹 Ide baszom neked jános a contact us dolgot */}
+        <Link href="/contact" className="hover:text-black px-2 border-r border-gray-300">
+          Contact Us
+        </Link>
+
         {/* 🔹 Blog */}
         <Link href="/blog" className="hover:text-black px-2 border-r border-gray-300">
           Privacy

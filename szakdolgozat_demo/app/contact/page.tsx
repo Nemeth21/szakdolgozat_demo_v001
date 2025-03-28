@@ -48,13 +48,13 @@ export default function ContactPage() {
       {/* 🔹 Back Button */}
       <button
         onClick={() => router.back()}
-        className="absolute top-6 left-6 bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition"
+        className="absolute top-6 left-6 bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition z-50"
       >
         ← Back
       </button>
 
       {/* 🔹 Left side with background image */}
-      <div className="w-full md:w-1/2 bg-cover bg-center flex items-center justify-center px-8 py-16 text-white relative"
+      <div className="w-full  md:w-1/2 bg-cover bg-center flex items-center justify-center px-8 py-16 text-white relative"
         style={{ backgroundImage: "url('/cookies1.jpg')" }}>
         
         {/* Overlay for text visibility */}
@@ -65,13 +65,13 @@ export default function ContactPage() {
           <p className="text-lg text-gray-200 mb-4 text-shadow-lg">We are here to help you with any inquiries or support you need.</p>
           
           {/* Contact details */}
-          <div className="mt-8 text-center">
+          <div className="mt-8 text-center ">
             <h2 className="font-bold text-lg text-shadow-md">Our Address</h2>
-            <p className="text-sm text-gray-300">1234 Fitness Street, Fit City, USA</p>
+            <p className="text-sm text-gray-300">Debrecen Bármi ..</p>
             <h2 className="font-bold text-lg mt-4 text-shadow-md">Phone</h2>
-            <p className="text-sm text-gray-300">+1 (555) 123-4567</p>
+            <p className="text-sm text-gray-300">+36 ( 30 665 554 7)</p>
             <h2 className="font-bold text-lg mt-4 text-shadow-md">Email</h2>
-            <p className="text-sm text-gray-300">support@example.com</p>
+            <p className="text-sm text-gray-300">support@contact.com</p>
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@ export default function ContactPage() {
       {/* 🔹 Right side with contact form */}
       <div className="w-full md:w-1/2 text-black p-12 flex items-center justify-center relative"
         style={{ backgroundImage: "url('/cookies1.jpg')" }}>
-        <form className="w-full max-w-lg space-y-6 bg-white bg-opacity-70 shadow-lg p-8 rounded-lg" onSubmit={handleSubmit}>
+        <form className="w-full max-w-lg space-y-6 bg-opacity-70 shadow-lg p-8 rounded-lg" onSubmit={handleSubmit}>
           <h2 className="text-5xl font-extrabold mb-6 text-center text-gray-800 text-shadow-md">Contact Us</h2>
           
           {/* Name */}
