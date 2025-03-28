@@ -51,17 +51,6 @@ const router = useRouter();
           <option value="HU">🇭🇺 HU</option>
         </select>
 
-        {/* 🔹 Nyelvválasztó */}
-        <select
-          value={selectedLanguage}
-          onChange={(e) => setSelectedLanguage(e.target.value)}
-          className="bg-transparent text-gray-600 focus:outline-none cursor-pointer text-xs md:text-sm"
-        >
-          <option value="English">English</option>
-          <option value="Deutsch">Deutsch</option>
-          <option value="Français">Français</option>
-          <option value="Magyar">Magyar</option>
-        </select>
       </div>
     </footer>
   );

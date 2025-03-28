@@ -1,18 +1,19 @@
 "use client";
+
 import React from "react";
 
 const products = [
-  "/products/product1.jpg",
-  "/products/product2.jpg",
-  "/products/product3.jpg",
-  "/products/product4.jpg",
+  "/products/product1.jpg?v=2",
+  "/products/product2.jpg?v=2",
+  "/products/product3.jpg?v=2",
+  "/products/product4.jpg?v=2",
 ];
 
 const products_second = [
-  "/products/product5.jpg",
-  "/products/product6.jpg",
-  "/products/product7.jpg",
-  "/products/product8.jpg",
+  "/products/product5.jpg?v=2",
+  "/products/product6.jpg?v=2",
+  "/products/product7.jpg?v=2",
+  "/products/product8.jpg?v=2",
 ];
 
 const ProductGrid = () => {
@@ -22,7 +23,7 @@ const ProductGrid = () => {
           {products.map((src, index) => (
               <div
                   key={index}
-                  className="p-2 bg-white shadow-md transition-all duration-500 transform hover:scale-110 hover:rotate-3 hover:shadow-2xl hover:bg-gradient-to-r hover:from-orange-500 hover:to-white hover:opacity-110 hover:translate-y-[-41px]"
+                  className="p-2 bg-white shadow-md transition-all duration-500 transform hover:scale-110 hover:rotate-3 hover:shadow-2xl hover:bg-gradient-to-r hover:from-orange-500 hover:to-white hover:opacity-90 hover:translate-y-[-41px]"
               >
                 <img
                     src={src}
