@@ -1,142 +1,142 @@
 "use client";
-
-import { useState } from "react";
-import Chatbot from "../components/Chatbot";  // Feltételezem, hogy van egy chatbot komponens
-import { useRouter } from "next/navigation";
-
-export default function ContactPage() {
-  const router = useRouter();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setMessage("");
-
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-
-    if (response.ok) {
-      setMessage("✅ Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
-    } else {
-      setMessage("❌ Error sending message. Please try again.");
-    }
-
-    setLoading(false);
-  };
-
-  return (
-    <div className="flex flex-col font-mono md:flex-row min-h-screen relative">
-      {/* 🔹 Back Button */}
-      <button
-        onClick={() => router.back()}
-        className="absolute top-6 left-6 bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition"
-      >
-        ← Back
-      </button>
-
-      {/* 🔹 Left side with background image */}
-      <div className="w-full md:w-1/2 bg-cover bg-center flex items-center justify-center px-8 py-16 text-white relative"
-        style={{ backgroundImage: "url('/cookies1.jpg')" }}>
-        
-        {/* Overlay for text visibility */}
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        
-        <div className="relative z-10 max-w-lg text-center">
-          <h1 className="text-4xl font-extrabold uppercase leading-tight mb-4 text-shadow-lg">Get in Touch with Us</h1>
-          <p className="text-lg text-gray-200 mb-4 text-shadow-lg">We are here to help you with any inquiries or support you need.</p>
-          
-          {/* Contact details */}
-          <div className="mt-8 text-center">
-            <h2 className="font-bold text-lg text-shadow-md">Our Address</h2>
-            <p className="text-sm text-gray-300">1234 Fitness Street, Fit City, USA</p>
-            <h2 className="font-bold text-lg mt-4 text-shadow-md">Phone</h2>
-            <p className="text-sm text-gray-300">+1 (555) 123-4567</p>
-            <h2 className="font-bold text-lg mt-4 text-shadow-md">Email</h2>
-            <p className="text-sm text-gray-300">support@example.com</p>
-          </div>
-        </div>
-      </div>
-
-      {/* 🔹 Right side with contact form */}
-      <div className="w-full md:w-1/2 text-black p-12 flex items-center justify-center relative"
-        style={{ backgroundImage: "url('/cookies1.jpg')" }}>
-        <form className="w-full max-w-lg space-y-6 bg-white bg-opacity-70 shadow-lg p-8 rounded-lg" onSubmit={handleSubmit}>
-          <h2 className="text-5xl font-extrabold mb-6 text-center text-gray-800 text-shadow-md">Contact Us</h2>
-          
-          {/* Name */}
-          <div>
-            <label className="block text-gray-800 text-xl font-bold">Your Name*</label>
-            <input
-              type="text"
-              name="name"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black transition ease-in-out duration-300 bg-opacity-60"
-              required
-              value={formData.name}
-              onChange={handleChange}
-            />
-          </div>
-
-          {/* Email */}
-          <div>
-            <label className="block text-gray-800 text-xl  font-bold">Email Address*</label>
-            <input
-              type="email"
-              name="email"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black transition ease-in-out duration-300 bg-opacity-60"
-              required
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-
-          {/* Message */}
-          <div>
-            <label className="block text-gray-800 text-xl font-bold">Your Message*</label>
-            <textarea
-              name="message"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black transition ease-in-out duration-300 bg-opacity-60"
-              required
-              value={formData.message}
-              onChange={handleChange}
-              rows={5}
-            />
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full bg-black text-white p-3 uppercase font-bold rounded-lg hover:opacity-80 transition disabled:opacity-50"
-            disabled={loading}
-          >
-            {loading ? "Sending..." : "Send Message"}
-          </button>
-        </form>
-
-        {/* Message after submission */}
-        {message && <p className="mt-4 text-center text-lg text-gray-800">{message}</p>}
-
-        {/* Chatbot icon */}
-        <Chatbot />
-      </div>
-    </div>
-  );
-}
+ import { useRouter } from "next/navigation";
+ import Image from "next/image";
+ import { useState } from "react";
+ import { FaRobot, FaTimes, FaPaperPlane } from "react-icons/fa";
+ 
+ const CartPage = () => {
+   const router = useRouter();
+   const [chatOpen, setChatOpen] = useState(false);
+   const [messages, setMessages] = useState([
+     { sender: "bot", text: "Hi! How can I help you today?" },
+   ]);
+   const [userInput, setUserInput] = useState("");
+ 
+   // Alapértelmezett üres kosár
+   const cartItems: any[] = []; // Üres tömb, hogy a design az üres kosarat mutassa
+ 
+   const handleSendMessage = () => {
+     if (!userInput.trim()) return;
+ 
+     // Felhasználó üzenetének hozzáadása
+     const newMessages = [...messages, { sender: "user", text: userInput }];
+     setMessages(newMessages);
+     setUserInput("");
+ 
+     // AI válasz szimulálása
+     setTimeout(() => {
+       const botReply = "I'm here to assist you. You can ask about products, shipping, or anything else!";
+       setMessages([...newMessages, { sender: "bot", text: botReply }]);
+     }, 1000);
+   };
+ 
+   return (
+     <div className="flex flex-col font-inter font-mono items-center justify-center min-h-screen bg-white text-black p-6">
+       {/* 🔹 Vissza gomb */}
+       <button
+         onClick={() => router.back()}
+         className="absolute top-6 left-6 bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition"
+       >
+         ← Back
+       </button>
+ 
+       {/* 🔹 Ha a kosár üres */}
+       {cartItems.length === 0 ? (
+         <div className="flex flex-col items-center text-center">
+           {/* Kosár ikon */}
+           <div className="w-32 h-32 relative mb-6">
+             <Image
+               src="/empty-bag.png" // Cseréld ki a megfelelő képre a "public" mappában
+               alt="Empty Bag"
+               layout="fill"
+               objectFit="contain"
+             />
+           </div>
+ 
+           {/* Üres kosár szöveg */}
+           <h1 className="text-2xl font-bold">YOUR BAG IS EMPTY</h1>
+           <p className="text-gray-600 mt-2">There are no products in your bag</p>
+ 
+           {/* Vásárlási gombok */}
+           <div className="mt-6 space-y-3 w-full max-w-sm">
+             <button
+               className="w-full bg-black text-white py-3 rounded-full text-lg font-semibold hover:bg-gray-800 transition"
+               onClick={() => router.push("/mens")}
+             >
+               SHOP MENS
+             </button>
+             <button
+               className="w-full bg-black text-white py-3 rounded-full text-lg font-semibold hover:bg-gray-800 transition"
+               onClick={() => router.push("/womens")}
+             >
+               SHOP WOMENS
+             </button>
+           </div>
+         </div>
+       ) : (
+         // 🔹 Ha vannak termékek a kosárban
+         <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-lg">
+           <h1 className="text-4xl font-bold mb-6">Shopping Cart</h1>
+           <p className="text-gray-600 text-center">Kosár tartalma itt fog megjelenni...</p>
+         </div>
+       )}
+ 
+       {/* 🔹 AI Chat Asszisztens */}
+       <div className="fixed bottom-6 right-6">
+         {/* AI Asszisztens gomb */}
+         {!chatOpen ? (
+           <button
+             className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center shadow-lg hover:bg-gray-800 transition"
+             onClick={() => setChatOpen(true)}
+           >
+             <FaRobot size={28} />
+           </button>
+         ) : (
+           <div className="w-80 bg-white p-4 rounded-lg shadow-lg border border-gray-200">
+             {/* Chat fejléc */}
+             <div className="flex justify-between items-center border-b pb-2">
+               <h2 className="text-lg font-semibold text-gray-900">AI Assistant</h2>
+               <button onClick={() => setChatOpen(false)} className="text-gray-500 hover:text-gray-700">
+                 <FaTimes size={20} />
+               </button>
+             </div>
+ 
+             {/* Chat üzenetek */}
+             <div className="h-56 overflow-y-auto mt-2 space-y-3">
+               {messages.map((msg, index) => (
+                 <div
+                   key={index}
+                   className={`p-2 rounded-md ${
+                     msg.sender === "user" ? "bg-blue-500 text-white self-end" : "bg-gray-200 text-black self-start"
+                   }`}
+                 >
+                   {msg.text}
+                 </div>
+               ))}
+             </div>
+ 
+             {/* Üzenet küldés */}
+             <div className="flex items-center mt-3 border-t pt-3">
+               <input
+                 type="text"
+                 className="flex-1 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300"
+                 placeholder="Type your message..."
+                 value={userInput}
+                 onChange={(e) => setUserInput(e.target.value)}
+                 onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+               />
+               <button
+                 className="ml-2 bg-black text-white px-3 py-2 rounded-md hover:bg-gray-800 transition"
+                 onClick={handleSendMessage}
+               >
+                 <FaPaperPlane />
+               </button>
+             </div>
+           </div>
+         )}
+       </div>
+     </div>
+   );
+ };
+ 
+ export default CartPage;
