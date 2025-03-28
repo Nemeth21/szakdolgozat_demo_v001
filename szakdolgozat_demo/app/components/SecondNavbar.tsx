@@ -30,7 +30,7 @@ const SecondNavbar = () => {
   }, []);
 
   return (
-    <div className="w-full bg-gray-100 text-gray-700 text-[10px] border-b border-gray-300 hidden md:flex justify-end px-6 py-2">
+    <div className="w-full bg-gray-200 text-gray-700 text-[10px] border-b border-gray-300 hidden md:flex justify-end px-6 py-2">
       <div className="flex space-x-4 items-center">
         {/* 🔹 Accessibility */}
         <Link href="/accessibility" className="hover:text-black px-2 border-r border-gray-300">
@@ -53,7 +53,7 @@ const SecondNavbar = () => {
         </Link>
 
         {/* 🔹 Blog */}
-        <Link href="/blog" className="hover:text-black px-2 border-r border-gray-300">
+        <Link href="/cookie-policy" className="hover:text-black px-2 border-r border-gray-300">
           Privacy
         </Link>
 
@@ -77,26 +77,6 @@ const SecondNavbar = () => {
           )}
         </div>
 
-        {/* 🔹 Nyelvválasztó Dropdown */}
-        <div 
-          className="relative px-2" 
-          ref={languageRef}
-          onMouseEnter={() => setLanguageDropdownOpen(true)}
-          onMouseLeave={() => setLanguageDropdownOpen(false)}
-        >
-          <button className="flex items-center space-x-1 hover:text-black">
-            <FaGlobe className="text-[8px]" />
-            <span>English ▼</span>
-          </button>
-
-          {languageDropdownOpen && (
-            <div className="absolute right-0 mt-1 w-32 bg-white border border-gray-200 shadow-md rounded-md p-1 z-50">
-              <Link href="#" className="block px-3 py-1 text-[10px] hover:bg-gray-100">English</Link>
-              <Link href="#" className="block px-3 py-1 text-[10px] hover:bg-gray-100">Magyar</Link>
-              <Link href="#" className="block px-3 py-1 text-[10px] hover:bg-gray-100">Română</Link>
-            </div>
-          )}
-        </div>
       </div>
     </div>
   );
