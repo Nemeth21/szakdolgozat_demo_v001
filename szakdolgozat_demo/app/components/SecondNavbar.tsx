@@ -32,13 +32,6 @@ const SecondNavbar = () => {
   return (
     <div className="w-full bg-gray-100 text-gray-700 text-[10px] border-b border-gray-300 hidden md:flex justify-end px-6 py-2">
       <div className="flex space-x-4 items-center">
-        {/* 🔹 Account */}
-        <Link href="/auth" className="hover:text-black flex items-center space-x-1 px-2 border-r border-gray-300"
-        onClick={() => router.push("/auth")}>
-          <FaUser className="text-[8px]" />
-          <span>Account</span>
-        </Link>
-
         {/* 🔹 Accessibility */}
         <Link href="/accessibility" className="hover:text-black px-2 border-r border-gray-300">
           Accessibility Statement
