@@ -60,8 +60,8 @@ const TermsPage = () => {
                 </a>
               </li>
               <li>
-                <a href="/privacy-policy" className="block px-4 py-2 hover:bg-gray-100">
-                  Privacy Policy
+                <a href="/cookie-policy" className="block px-4 py-2 hover:bg-gray-100">
+                  Cookie Policy
                 </a>
               </li>
             </ul>
