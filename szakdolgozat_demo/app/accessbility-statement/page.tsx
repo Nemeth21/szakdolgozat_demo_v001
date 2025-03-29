@@ -17,6 +17,7 @@ export default function AccessibilityStatement() {
       </button>
 
       {/* 🔹 Main Content Section */}
+      
       <div className="absolute inset-0 bg-black opacity-50 z-40"></div>
 
       <div className="relative z-50 max-w-4xl mx-auto p-8">
