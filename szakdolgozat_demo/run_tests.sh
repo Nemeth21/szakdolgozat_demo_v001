@@ -36,6 +36,10 @@ mkdir -p "$TERMS_LOG_DIR"
 TERMS_USE_LOG_DIR="./app/terms-of-use/terms-use-logs"
 mkdir -p "$TERMS_USE_LOG_DIR"
 
+# 10. Az cart könyvtár létrehozása, ha még nem létezik
+CART_LOG_DIR="./app/cart/cart-logs"
+mkdir -p "$CART_LOG_DIR"
+
 # 7. Dátum és idő kinyerése a fájl nevéhez
 DATE=$(date +"%Y-%m-%d_%H-%M-%S")
 
@@ -49,6 +53,7 @@ DASHBOARD_LOG_FILE="$DASHBOARD_LOG_DIR/test_log_$DATE.txt"
 NEWSLETTER_LOG_FILE="$NEWSLETTER_LOG_DIR/test_log_$DATE.txt"
 TERMS_LOG_FILE="$TERMS_LOG_DIR/test_log_$DATE.txt"
 TERMS_USE_LOG_FILE="$TERMS_USE_LOG_DIR/test_log_$DATE.txt"
+CART_LOG_FILE="$CART_LOG_DIR/test_log_$DATE.txt"
 
 # 9. Az auth teszt futtatása és a kimenet mentése a log fájlba
 echo "Futtatás: auth teszt..."
@@ -104,3 +109,9 @@ echo "Futtatás: terms-of-use teszt..."
 # Teszt futtatása csak a terms-of-use-hoz
 npm run test -- --testPathPattern=terms-of-use > "$TERMS_USE_LOG_FILE" 2>&1
 echo "Teszt lefutott. A log a terms-use-logs mappában található: $TERMS_USE_LOG_FILE"
+
+# 16. Az cart teszt futtatása és a kimenet mentése a log fájlba
+echo "Futtatás: cart teszt..."
+# Teszt futtatása csak a cart-hoz
+npm run test -- --testPathPattern=cart > "$CART_LOG_FILE" 2>&1
+echo "Teszt lefutott. A log a cart-logs mappában található: $CART_LOG_FILE"
