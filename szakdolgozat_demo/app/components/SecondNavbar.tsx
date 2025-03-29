@@ -33,7 +33,7 @@ const SecondNavbar = () => {
     <div className="w-full bg-gray-200 text-gray-700 text-[10px] border-b border-gray-300 hidden md:flex justify-end px-6 py-2">
       <div className="flex space-x-4 items-center">
         {/* 🔹 Accessibility */}
-        <Link href="/accessibility" className="hover:text-black px-2 border-r border-gray-300">
+        <Link href="/accessbility-statement" className="hover:text-black px-2 border-r border-gray-300">
           Accessibility Statement
         </Link>
 
