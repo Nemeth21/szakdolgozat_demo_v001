@@ -1,0 +1,13 @@
+
+> szakdolgozat_demo@0.1.0 test
+> jest --testPathPattern=accessibility-statement
+
+No tests found, exiting with code 1
+Run with `--passWithNoTests` to exit with code 0
+In /Users/balogsebastian/Desktop/official_szakdolgozat/szakdolgozat_demo
+  223 files checked.
+  testMatch: **/__tests__/**/*.[jt]s?(x), **/?(*.)+(spec|test).[tj]s?(x) - 4 matches
+  testPathIgnorePatterns: /node_modules/ - 223 matches
+  testRegex:  - 0 matches
+Pattern: anpm install --save-dev jasmine
+ccessibility-statement - 0 matches
