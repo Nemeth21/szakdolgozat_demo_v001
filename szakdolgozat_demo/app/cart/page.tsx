@@ -11,53 +11,38 @@
      { sender: "bot", text: "Hi! How can I help you today?" },
    ]);
    const [userInput, setUserInput] = useState("");
- 
-   // Alapértelmezett üres kosár
-   const cartItems: any[] = []; // Üres tömb, hogy a design az üres kosarat mutassa
- 
+   const cartItems: any[] = []; 
    const handleSendMessage = () => {
      if (!userInput.trim()) return;
- 
-     // Felhasználó üzenetének hozzáadása
      const newMessages = [...messages, { sender: "user", text: userInput }];
      setMessages(newMessages);
      setUserInput("");
- 
-     // AI válasz szimulálása
      setTimeout(() => {
        const botReply = "I'm here to assist you. You can ask about products, shipping, or anything else!";
        setMessages([...newMessages, { sender: "bot", text: botReply }]);
      }, 1000);
    };
- 
    return (
      <div className="flex flex-col font-inter font-mono items-center justify-center min-h-screen bg-white text-black p-6">
-       {/* 🔹 Vissza gomb */}
        <button
          onClick={() => router.back()}
          className="absolute top-6 left-6 bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition"
        >
          ← Back
        </button>
- 
-       {/* 🔹 Ha a kosár üres */}
        {cartItems.length === 0 ? (
          <div className="flex flex-col items-center text-center">
-           {/* Kosár ikon */}
            <div className="w-32 h-32 relative mb-6">
              <Image
-               src="/empty-bag.png" // Cseréld ki a megfelelő képre a "public" mappában
+               src="/empty-bag.png" 
                alt="Empty Bag"
                layout="fill"
                objectFit="contain"
              />
            </div>
- 
-           {/* Üres kosár szöveg */}
            <h1 className="text-2xl font-bold">YOUR BAG IS EMPTY</h1>
            <p className="text-gray-600 mt-2">There are no products in your bag</p>
  
-           {/* Vásárlási gombok */}
            <div className="mt-6 space-y-3 w-full max-w-sm">
              <button
                className="w-full bg-black text-white py-3 rounded-full text-lg font-semibold hover:bg-gray-800 transition"
@@ -74,16 +59,12 @@
            </div>
          </div>
        ) : (
-         // 🔹 Ha vannak termékek a kosárban
          <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-lg">
            <h1 className="text-4xl font-bold mb-6">Shopping Cart</h1>
            <p className="text-gray-600 text-center">Kosár tartalma itt fog megjelenni...</p>
          </div>
        )}
- 
-       {/* 🔹 AI Chat Asszisztens */}
        <div className="fixed bottom-6 right-6">
-         {/* AI Asszisztens gomb */}
          {!chatOpen ? (
            <button
              className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center shadow-lg hover:bg-gray-800 transition"
@@ -93,15 +74,12 @@
            </button>
          ) : (
            <div className="w-80 bg-white p-4 rounded-lg shadow-lg border border-gray-200">
-             {/* Chat fejléc */}
              <div className="flex justify-between items-center border-b pb-2">
                <h2 className="text-lg font-semibold text-gray-900">AI Assistant</h2>
                <button onClick={() => setChatOpen(false)} className="text-gray-500 hover:text-gray-700">
                  <FaTimes size={20} />
                </button>
              </div>
- 
-             {/* Chat üzenetek */}
              <div className="h-56 overflow-y-auto mt-2 space-y-3">
                {messages.map((msg, index) => (
                  <div
@@ -114,8 +92,6 @@
                  </div>
                ))}
              </div>
- 
-             {/* Üzenet küldés */}
              <div className="flex items-center mt-3 border-t pt-3">
                <input
                  type="text"
