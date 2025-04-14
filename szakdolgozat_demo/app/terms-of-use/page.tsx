@@ -3,18 +3,21 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-// 📌 Dinamikusan generált dátum
 const getCurrentDate = () => {
   const today = new Date();
-  return today.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+  return today.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
 };
 
 const TermsOfUse = () => {
   const router = useRouter();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [visibleSections, setVisibleSections] = useState<{ [key: string]: boolean }>({});
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // 📌 Ellenőrzi, hogy melyik szakasz látható görgetés közben
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll(".fade-in-section");
@@ -37,9 +40,36 @@ const TermsOfUse = () => {
 
   return (
     <div className="min-h-screen font-inter font-mono flex flex-col items-center bg-gray-50 px-6 py-12 relative">
-      
+      {/* 🔹 Mobil hamburger menü */}
+      <div className="absolute top-6 right-6 md:hidden">
+        <button
+          className="text-black focus:outline-none"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <div className="w-6 h-0.5 bg-black mb-1"></div>
+          <div className="w-6 h-0.5 bg-black mb-1"></div>
+          <div className="w-6 h-0.5 bg-black"></div>
+        </button>
+        {menuOpen && (
+          <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md border border-gray-200 w-48 z-50">
+            <ul className="text-black text-sm">
+              <li>
+                <a href="/terms-and-conditions" className="block px-4 py-2 hover:bg-gray-100">
+                  Terms & Conditions
+                </a>
+              </li>
+              <li>
+                <a href="/cookie-policy" className="block px-4 py-2 hover:bg-gray-100">
+                  Cookie Policy
+                </a>
+              </li>
+            </ul>
+          </div>
+        )}
+      </div>
+
       {/* 🔹 Bal felső sarok: Vissza gomb + Dropdown */}
-      <div className="absolute top-6 left-6 group">
+      <div className="absolute top-6 left-6 group hidden md:block">
         <button
           onClick={() => router.push("/")}
           className="bg-white text-black px-4 py-2 rounded-md shadow-md border border-gray-300 hover:bg-gray-200 transition flex items-center"
@@ -69,17 +99,13 @@ const TermsOfUse = () => {
         )}
       </div>
 
-      {/* 🔹 Fő cím */}
       <h1 className="text-5xl md:text-6xl font-extrabold text-black text-center mt-12 fade-in-section" id="title">
         TERMS OF USE
       </h1>
-
-      {/* 🔹 Frissítés dátuma */}
       <p className="text-orange-500 flex items-center text-sm mt-2 fade-in-section" id="update-date">
         ⏳ Last updated: {getCurrentDate()}
       </p>
 
-      {/* 🔹 Háttérképek - Váltakozva bal és jobb oldalon */}
       <div className="w-full flex justify-end">
         <div 
           className="w-1/2 h-96 bg-cover bg-center rounded-lg shadow-lg mt-8 fade-in-section"
@@ -87,7 +113,6 @@ const TermsOfUse = () => {
         ></div>
       </div>
 
-      {/* 🔹 Szöveg blokk */}
       <div className="max-w-4xl text-gray-800 mt-8 space-y-6 text-justify leading-relaxed">
         <p className="fade-in-section">
           Welcome to LIVETHEFIT. These Terms of Use govern your access to and use of our website, mobile applications, and related services. 
@@ -105,7 +130,6 @@ const TermsOfUse = () => {
           ></div>
         </div>
 
-        {/* 📌 1. Acceptance of Terms */}
         <h2 className="text-xl font-bold mt-6 fade-in-section">1. ACCEPTANCE OF TERMS</h2>
         <p className="fade-in-section">
           You agree that by accessing and using LIVETHEFIT, you accept and agree to comply with these Terms of Use. We provide our services solely for personal, non-commercial use.
@@ -122,7 +146,6 @@ const TermsOfUse = () => {
           ></div>
         </div>
 
-        {/* 📌 2. User Accounts & Responsibilities */}
         <h2 className="text-xl font-bold mt-6 fade-in-section">2. USER ACCOUNTS & RESPONSIBILITIES</h2>
         <p className="fade-in-section">
           When you create an account with LIVETHEFIT, you are responsible for maintaining the confidentiality of your login credentials.
@@ -140,7 +163,6 @@ const TermsOfUse = () => {
           ></div>
         </div>
 
-        {/* 📌 3. Intellectual Property */}
         <h2 className="text-xl font-bold mt-6 fade-in-section">3. INTELLECTUAL PROPERTY RIGHTS</h2>
         <p className="fade-in-section">
           All content on LIVETHEFIT, including images, graphics, logos, and text, is the exclusive property of LIVETHEFIT and is protected under copyright laws.
@@ -150,10 +172,9 @@ const TermsOfUse = () => {
           Unauthorized reproduction, distribution, or modification of any content is strictly prohibited.
         </p>
 
-        {/* 📌 Footer */}
         <footer className="w-full mt-12 border-t border-gray-300 pt-6 pb-4 text-center text-gray-600 text-sm">
           <p>
-            © 2025 | LIVETHEFIT Limited | All Rights Reserved |{" "}
+            © 2025 | LIVETHEFIT Limited | All Rights Reserved | {" "}
             <span className="text-orange-500 font-bold">Train Hard, Live Fit</span>.
           </p>
         </footer>

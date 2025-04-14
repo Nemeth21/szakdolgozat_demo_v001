@@ -1,10 +1,9 @@
-import { POST } from "@/api/login"; // A POST függvény importálása
+import { POST } from "@/api/login"; 
 import { NextResponse } from "next/server";
-import * as mongodb from "@/lib/mongodb"; // MongoDB kapcsolódás mockolása
+import * as mongodb from "@/lib/mongodb"; 
 import bcrypt from "bcryptjs";
 import User from "@/models/User";
 
-// Mockoljuk a MongoDB kapcsolatot és a User modellt
 jest.mock("@/lib/mongodb");
 jest.mock("@/models/User");
 jest.mock("bcryptjs");
@@ -27,7 +26,7 @@ describe("POST /api/login", () => {
 
     const response = await POST(req as any);
     expect(response.status).toBe(400);
-    expect(response.body.error).toBe("❌ Hiányzó adatok!");
+    expect(response.body.error).toBe("hiányzó adatok!");
   });
 
   it("should return 400 if user is not found", async () => {
@@ -36,11 +35,11 @@ describe("POST /api/login", () => {
     };
 
     mockConnectToDatabase.mockResolvedValueOnce({});
-    mockUserFindOne.mockResolvedValueOnce(null); // Nincs találat a felhasználóra
+    mockUserFindOne.mockResolvedValueOnce(null); 
 
     const response = await POST(req as any);
     expect(response.status).toBe(400);
-    expect(response.body.error).toBe("❌ Hibás email vagy jelszó!");
+    expect(response.body.error).toBe("hibás email vagy jelszó!");
   });
 
   it("should return 400 if password does not match", async () => {
@@ -50,11 +49,11 @@ describe("POST /api/login", () => {
 
     mockConnectToDatabase.mockResolvedValueOnce({});
     mockUserFindOne.mockResolvedValueOnce({ password: "hashedPassword" });
-    mockBcryptCompare.mockResolvedValueOnce(false); // Jelszó nem egyezik
+    mockBcryptCompare.mockResolvedValueOnce(false); 
 
     const response = await POST(req as any);
     expect(response.status).toBe(400);
-    expect(response.body.error).toBe("❌ Hibás email vagy jelszó!");
+    expect(response.body.error).toBe("hibás email vagy jelszó!");
   });
 
   it("should return 200 if login is successful", async () => {
@@ -64,7 +63,7 @@ describe("POST /api/login", () => {
 
     mockConnectToDatabase.mockResolvedValueOnce({});
     mockUserFindOne.mockResolvedValueOnce({ password: "hashedPassword" });
-    mockBcryptCompare.mockResolvedValueOnce(true); // Jelszó egyezik
+    mockBcryptCompare.mockResolvedValueOnce(true); 
 
     const response = await POST(req as any);
     expect(response.status).toBe(200);
@@ -77,10 +76,10 @@ describe("POST /api/login", () => {
       json: jest.fn().mockResolvedValue({ email: "test@example.com", password: "password123" }),
     };
 
-    mockConnectToDatabase.mockRejectedValueOnce(new Error("Database connection error"));
+    mockConnectToDatabase.mockRejectedValueOnce(new Error("database connection error"));
 
     const response = await POST(req as any);
     expect(response.status).toBe(500);
-    expect(response.body.error).toBe("⚠️ Hiba történt!");
+    expect(response.body.error).toBe(" egy banális hiba történt!");
   });
 });
