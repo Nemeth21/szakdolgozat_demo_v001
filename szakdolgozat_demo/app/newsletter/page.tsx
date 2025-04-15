@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import Chatbot from "../components/Chatbot";
 import { useRouter } from "next/navigation";
@@ -43,10 +44,10 @@ export default function NewsletterPage() {
     });
 
     if (response.ok) {
-      setMessage("✅ Successful signup!");
+      setMessage("successful signup!");
       setFormData({ email: "", firstName: "", lastName: "", gender: "", dob: { day: "", month: "", year: "" } });
     } else {
-      setMessage("❌ Error signing up. Please try again.");
+      setMessage("error signing up. Please try again.");
     }
 
     setLoading(false);
@@ -61,15 +62,9 @@ export default function NewsletterPage() {
 >
   ← Back to Home
 </button>
-
-
-      {/* 🔹 Bal oldali rész háttérképpel */}
       <div className="w-full md:w-1/2 relative flex flex-col justify-center px-12 py-16 text-white"
         style={{ backgroundImage: "url('/newsletter.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}>
-        
-        {/* 🔹 Overlay */}
         <div className="absolute inset-0 bg-black opacity-50"></div>
-
         <div className="relative z-10 max-w-lg">
         <h1 className="text-5xl font-extrabold uppercase leading-tight">
   HEY, WANT <span className="text-orange-500">EMAILS</span> <br /> YOU’LL ACTUALLY READ?
@@ -79,9 +74,6 @@ export default function NewsletterPage() {
   <span className="text-orange-500 font-bold"> best decision </span>  
   you’ve made since you landed on our website.
 </p>
-
-
-          {/* 🔹 Információs kártyák */}
           <div className="mt-8 grid grid-cols-2 gap-4">
 
   <div className="bg-[rgba(0,0,0,0.3)] backdrop-blur-lg p-4 rounded-lg shadow-lg">
@@ -108,18 +100,12 @@ export default function NewsletterPage() {
       Sign up for the first time and get 10% off your first order.
     </p>
 </div>
-
-
 </div>
 
         </div>
       </div>
-
-      {/* 🔹 Jobb oldali űrlap */}
       <div className="w-full md:w-1/2 flex flex-col items-center justify-center bg-white p-12 relative">
         <form className="w-full max-w-md space-y-6" onSubmit={handleSubmit}>
-          
-          {/* Email */}
           <div>
             <label className="block text-gray-800 font-bold">Email Address*</label>
             <input 
@@ -131,8 +117,6 @@ export default function NewsletterPage() {
               onChange={handleChange} 
             />
           </div>
-
-          {/* First Name */}
           <div>
             <label className="block text-gray-800 font-bold">First Name*</label>
             <input 
@@ -144,8 +128,6 @@ export default function NewsletterPage() {
               onChange={handleChange} 
             />
           </div>
-
-          {/* Last Name */}
           <div>
             <label className="block text-gray-800 font-bold">Last Name*</label>
             <input 
@@ -157,8 +139,6 @@ export default function NewsletterPage() {
               onChange={handleChange} 
             />
           </div>
-
-          {/* Privacy Policy Checkbox */}
           <div className="flex items-center space-x-3">
             <input 
               type="checkbox" 
@@ -171,8 +151,6 @@ export default function NewsletterPage() {
               See our <a href="#" className="underline text-orange-500">Privacy Policy</a> and <a href="#" className="underline text-orange-500">California Notice</a>.
             </label>
           </div>
-
-          {/* Submit Button */}
           <button 
             type="submit" 
             className="w-full bg-black text-white p-3 uppercase font-bold rounded-lg hover:opacity-80 transition disabled:opacity-50" 
@@ -181,11 +159,8 @@ export default function NewsletterPage() {
             {loading ? "Processing..." : "Sign Up"}
           </button>
         </form>
-
-        {/* Chatbot ikon */}
         <Chatbot />
       </div>
-
     </div>
   );
 }

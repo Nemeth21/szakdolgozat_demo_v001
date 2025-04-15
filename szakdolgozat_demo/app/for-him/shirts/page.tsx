@@ -10,30 +10,26 @@ export default function ShirtsPage() {
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<string>("Relevancy");
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
-  const router = useRouter(); // ✅ HOZZÁADVA
+  const router = useRouter(); 
 
-  // ✅ Méret kiválasztás
   const toggleSize = (size: string) => {
     setSelectedSizes((prev) =>
       prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
     );
   };
 
-  // ✅ Szín kiválasztás
   const toggleColor = (color: string) => {
     setSelectedColors((prev) =>
       prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color]
     );
   };
 
-  // ✅ Szűrők törlése
   const clearFilters = () => {
     setSelectedSizes([]);
     setSelectedColors([]);
     setSortBy("Relevancy");
   };
 
-  // 🔹 **Szűrés és rendezés**
   const filteredShirts = shirtCategories
     .filter((shirt) =>
       selectedSizes.length > 0 ? selectedSizes.some((size) => shirt.size.includes(size)) : true
@@ -50,14 +46,12 @@ export default function ShirtsPage() {
 
   return (
     <div className="min-h-screen font-inter font-mono text-black bg-white px-6 lg:px-16 py-8">
-      {/* 🔹 Felső banner */}
       <div className="text-center text-white text-xs md:text-sm bg-black py-2 font-semibold tracking-wide">
       <span className="text-orange-500 text-lg font-bold mx-1"> REFER </span>
        A FRIEND TO EARN $10 OFF YOUR NEXT PURCHASE OF 
-        <span className="text-orange-500 text-lg font-bold mx-1"> $50+ 🎉</span>
+        <span className="text-orange-500 text-lg font-bold mx-1"> $50+ !</span>
       </div>
 
-      {/* 🔹 Vissza gomb (JÓ HELYEN) */}
       <div className="max-w-6xl mx-auto flex items-center justify-between mt-4">
         <button
           onClick={() => router.back()}
@@ -65,8 +59,6 @@ export default function ShirtsPage() {
         >
           ← Back
         </button>
-
-        {/* 🔹 Szűrő gomb (mobilon megjelenik) */}
         <button
           onClick={() => setIsFilterOpen(true)}
           className="md:hidden flex items-center space-x-2 text-sm text-gray-700 border border-gray-300 px-3 py-1 rounded-md shadow-sm"
@@ -77,31 +69,24 @@ export default function ShirtsPage() {
       </div>
 
       <div className="flex gap-8 max-w-6xl mx-auto mt-6">
-        {/* 🔹 Bal oldali szűrő panel */}
         <div
           className={`fixed md:relative top-0 left-0 w-full md:w-1/4 h-full md:h-auto bg-white z-50 md:z-auto shadow-lg md:shadow-none p-6 transform ${
             isFilterOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
           } transition-transform duration-300 ease-in-out`}
         >
-          {/* 🔹 Fejléc és bezáró ikon (mobil) */}
           <div className="md:hidden flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold">Filters</h2>
             <button onClick={() => setIsFilterOpen(false)} className="text-gray-700 text-xl">
               <FaTimes />
             </button>
           </div>
-
-          {/* 🔹 "Clear All" gomb */}
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold hidden md:block">FILTER & SORT</h2>
             <button onClick={clearFilters} className="text-sm text-gray-500 hover:underline">
               Clear All
             </button>
           </div>
-
-          {/* 🔹 Szűrő opciók */}
           <div className="space-y-6">
-            {/* 🔹 Rendezés */}
             <div>
               <h3 className="font-semibold text-sm mb-2">SORT BY</h3>
               <select
@@ -116,8 +101,6 @@ export default function ShirtsPage() {
                 ))}
               </select>
             </div>
-
-            {/* 🔹 Méret szűrő */}
             <div>
               <h3 className="font-semibold text-sm mb-2">SIZE</h3>
               <div className="flex flex-wrap gap-2">
@@ -136,8 +119,6 @@ export default function ShirtsPage() {
                 ))}
               </div>
             </div>
-
-            {/* 🔹 Szín szűrő */}
             <div>
               <h3 className="font-semibold text-sm mb-2">COLOR</h3>
               <div className="flex flex-wrap gap-2">
@@ -158,8 +139,6 @@ export default function ShirtsPage() {
             </div>
           </div>
         </div>
-
-        {/* 🔹 Jobb oldalon a pólók listája */}
         <div className="w-full md:w-3/4">
           <h1 className="hidden md:block text-3xl font-bold">T-SHIRTS & TOPS</h1>
           <p className="text-gray-600 text-sm mt-2">{filteredShirts.length} Products</p>

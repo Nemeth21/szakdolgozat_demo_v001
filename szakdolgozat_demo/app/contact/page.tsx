@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Chatbot from "../components/Chatbot";  // Feltételezem, hogy van egy chatbot komponens
+import Chatbot from "../components/Chatbot;
 import { useRouter } from "next/navigation";
 
 export default function ContactPage() {
@@ -13,7 +13,6 @@ export default function ContactPage() {
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -21,23 +20,20 @@ export default function ContactPage() {
       [name]: value,
     }));
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
-
     const response = await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
-
     if (response.ok) {
-      setMessage("✅ Message sent successfully!");
+      setMessage("message sent successfully!");
       setFormData({ name: "", email: "", message: "" });
     } else {
-      setMessage("❌ Error sending message. Please try again.");
+      setMessage("error sending message. Please try again.");
     }
 
     setLoading(false);
@@ -45,26 +41,18 @@ export default function ContactPage() {
 
   return (
     <div className="flex flex-col font-mono md:flex-row min-h-screen relative">
-      {/* 🔹 Back Button */}
       <button
         onClick={() => router.back()}
         className="absolute top-6 left-6 bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition z-50"
       >
         ← Back
       </button>
-
-      {/* 🔹 Left side with background image */}
       <div className="w-full  md:w-1/2 bg-cover bg-center flex items-center justify-center px-8 py-16 text-white relative"
         style={{ backgroundImage: "url('/cookies1.jpg')" }}>
-        
-        {/* Overlay for text visibility */}
         <div className="absolute inset-0 bg-black opacity-50"></div>
-        
         <div className="relative z-10 max-w-lg text-center">
           <h1 className="text-4xl font-extrabold uppercase leading-tight mb-4 text-shadow-lg">Get in Touch with Us</h1>
           <p className="text-lg text-gray-200 mb-4 text-shadow-lg">We are here to help you with any inquiries or support you need.</p>
-          
-          {/* Contact details */}
           <div className="mt-8 text-center ">
             <h2 className="font-bold text-lg text-shadow-md">Our Address</h2>
             <p className="text-sm text-gray-300">Debrecen Bármi ..</p>
@@ -75,14 +63,10 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-
-      {/* 🔹 Right side with contact form */}
       <div className="w-full md:w-1/2 text-black p-12 flex items-center justify-center relative"
         style={{ backgroundImage: "url('/cookies1.jpg')" }}>
         <form className="w-full max-w-lg space-y-6 bg-opacity-70 shadow-lg p-8 rounded-lg" onSubmit={handleSubmit}>
           <h2 className="text-5xl font-extrabold mb-6 text-center text-gray-800 text-shadow-md">Contact Us</h2>
-          
-          {/* Name */}
           <div>
             <label className="block text-gray-800 text-xl font-bold">Your Name*</label>
             <input
@@ -94,8 +78,6 @@ export default function ContactPage() {
               onChange={handleChange}
             />
           </div>
-
-          {/* Email */}
           <div>
             <label className="block text-gray-800 text-xl  font-bold">Email Address*</label>
             <input
@@ -107,8 +89,6 @@ export default function ContactPage() {
               onChange={handleChange}
             />
           </div>
-
-          {/* Message */}
           <div>
             <label className="block text-gray-800 text-xl font-bold">Your Message*</label>
             <textarea
@@ -120,8 +100,6 @@ export default function ContactPage() {
               rows={5}
             />
           </div>
-
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-black text-white p-3 uppercase font-bold rounded-lg hover:opacity-80 transition disabled:opacity-50"
@@ -130,11 +108,7 @@ export default function ContactPage() {
             {loading ? "Sending..." : "Send Message"}
           </button>
         </form>
-
-        {/* Message after submission */}
         {message && <p className="mt-4 text-center text-lg text-gray-800">{message}</p>}
-
-        {/* Chatbot icon */}
         <Chatbot />
       </div>
     </div>

@@ -40,7 +40,6 @@ const TermsOfUse = () => {
 
   return (
     <div className="min-h-screen font-inter font-mono flex flex-col items-center bg-gray-50 px-6 py-12 relative">
-      {/* 🔹 Mobil hamburger menü */}
       <div className="absolute top-6 right-6 md:hidden">
         <button
           className="text-black focus:outline-none"
@@ -67,8 +66,6 @@ const TermsOfUse = () => {
           </div>
         )}
       </div>
-
-      {/* 🔹 Bal felső sarok: Vissza gomb + Dropdown */}
       <div className="absolute top-6 left-6 group hidden md:block">
         <button
           onClick={() => router.push("/")}

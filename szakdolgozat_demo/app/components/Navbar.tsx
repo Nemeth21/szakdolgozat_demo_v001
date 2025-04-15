@@ -1,27 +1,21 @@
 "use client";
+
 import React, { useState,useRef , useEffect } from "react";
 import { useRouter } from "next/navigation"; 
 import { FaUser, FaSearch, FaShoppingBag, FaBars, FaTimes, FaGlobe  } from "react-icons/fa";
 import Image from "next/image";
-import Link from "next/link"; // Link komponens importálása
-
+import Link from "next/link"; 
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
   let dropdownTimeout: NodeJS.Timeout;
-  const [langDropdownOpen, setLangDropdownOpen] = useState(false); // Új: Nyelvválasztó dropdown állapota
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false); 
   const [searchOpen, setSearchOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
-
-   // 🔹 **Nyelv Dropdown Nyitás/Zárás**
-   const toggleLangDropdown = () => setLangDropdownOpen((prev) => !prev);
-   const closeLangDropdown = () => setLangDropdownOpen(false);
-
-
-
-
+  const toggleLangDropdown = () => setLangDropdownOpen((prev) => !prev);
+  const closeLangDropdown = () => setLangDropdownOpen(false);
 
 
   const menuItems = {
@@ -118,16 +112,11 @@ const Navbar = () => {
     ],
   },
 };
-
-
-  // Ha a kereső nyitva van, fókusz az input mezőre
   useEffect(() => {
     if (searchOpen && searchInputRef.current) {
       searchInputRef.current.focus();
     }
   }, [searchOpen]);
-
-  // Ha ESC-et nyomunk, zárja be a keresőt
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -137,43 +126,21 @@ const Navbar = () => {
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
-
-   // Keresőmező bezárása animációval
    const closeSearch = () => {
     setSearchOpen(false);
   };
-
-   // Mutatja a dropdown menüt, ha fölé viszik az egeret
    const handleMouseEnter = (menu: string) => {
     clearTimeout(dropdownTimeout);
     setDropdownOpen(menu);
   };
-
   const handleMouseLeave = () => {
     dropdownTimeout = setTimeout(() => {
       setDropdownOpen(null);
-    }, 200); // 200ms késleltetés
+    }, 
   };
-
-
   return (
     <>
-      {/* Top Navigation Bar */}
       <nav className="w-full bg-white font-inter font-mono text-black flex justify-between items-center px-6 lg:px-16 py-4 border-b border-gray-200 relative">
-        {/* Bal oldali menü (Desktop) */}
-       
-       
-       
-
-
-
-
-
-
-
-       
-       
-{/* Bal oldali menü (Desktop) */}
 <div className="hidden lg:flex space-x-6 text-xs md:text-sm font-semibold tracking-wider">
   {Object.keys(menuItems).map((category) => (
     <div
@@ -186,11 +153,9 @@ const Navbar = () => {
         {category} ▼
       </Link>
 
-      {/* Dropdown Menu */}
       {dropdownOpen === category && (
         <div className="absolute left-0 top-full mt-2 w-[900px] bg-white shadow-lg rounded-md p-6 z-50 border border-gray-200">
           <div className="grid grid-cols-3 gap-8">
-            {/* Sections (PRODUCTS & FEATURED) */}
             {menuItems[category].sections.map((section) => (
               <div key={section.title}>
                 <h3 className="text-xs font-bold text-gray-700 uppercase mb-2">
@@ -208,8 +173,6 @@ const Navbar = () => {
                 </ul>
               </div>
             ))}
-
-            {/* Dynamic Image & Title Section */}
             <div className="text-center">
               <Image
                 src={
@@ -238,24 +201,10 @@ const Navbar = () => {
     </div>
   ))}
 </div>
-
-
-
-
-
-
-
-
-
-
-        {/* Középen a logó */}
         <h1 className="text-2xl md:text-3xl font-bold tracking-widest">LIVETHE-FIT</h1>
-
-        {/* Jobb oldali ikonok és hamburger menü gomb */}
         <div className="flex items-center space-x-6 text-xs md:text-sm">
           <div className="hidden lg:flex space-x-6">
             <p className="hidden md:block tracking-wide">QUESTIONS? (+36) 30 123 123</p>
-            {/* 🔹 Profil ikon kattintásra navigál a bejelentkezési oldalra */}
             <FaUser
               className="text-lg md:text-xl cursor-pointer hover:text-gray-600"
               onClick={() => router.push("/auth")}
@@ -270,8 +219,6 @@ const Navbar = () => {
             onClick={() => router.push("/cart")}
             />
           </div>
-
-          {/* 🔹 Keresőmező animációval */}
       <div
         className={`fixed top-0 left-0 w-full bg-white shadow-md transition-transform duration-500 ease-in-out ${
           searchOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
@@ -289,11 +236,6 @@ const Navbar = () => {
           onClick={closeSearch}
         />
       </div>
-
-
-
-
-         {/* 🔹 🌍 NYELVVÁLASZTÓ */}
          <div className="relative">
             <button
               className="flex items-center space-x-1 cursor-pointer px-3 py-1 rounded-md border border-gray-300 bg-white hover:bg-gray-100 transition"
@@ -302,26 +244,21 @@ const Navbar = () => {
               <FaGlobe className="text-lg" />
               <span className="text-xs md:text-sm">US ▼</span>
             </button>
-
-            {/* 🔹 DROPDOWN MENÜ */}
             {langDropdownOpen && (
               <div
                 className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 shadow-md rounded-md p-2 z-50 transition-opacity duration-200 opacity-100"
-                onMouseLeave={closeLangDropdown} // Kilépésre bezár
+                onMouseLeave={closeLangDropdown} 
               >
-                {/* 🌍 Nyelvek */}
                 <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                  🇺🇸 English (US)
+                  English (US)
                 </Link>
                 <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                  🇭🇺 Magyar
+                   Magyar
                 </Link>
                 <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                  🇷🇴 Română
+                   Română
                 </Link>
                 <hr className="my-2 border-gray-200" />
-                
-                {/* ⚙️ Egyéb menüpontok */}
                 <Link href="/auth" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                   - Profilom
                 </Link>
@@ -337,21 +274,11 @@ const Navbar = () => {
               </div>
             )}
           </div>
-
-
-
-
-
-
-
-          {/* Hamburger Menü Gomb (Tablet és Mobil) */}
           <button className="lg:hidden text-2xl" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <FaTimes className="animate-spin" /> : <FaBars className="animate-pulse" />}
           </button>
         </div>
       </nav>
-
-      {/* Mobil Menü */}
       <div
         className={`fixed top-0 left-0 font-inter font-mono w-full h-full bg-black z-50 p-6 shadow-lg transition-transform duration-300 ease-in-out transform ${
           mobileMenuOpen ? "translate-x-0 opacity-100 scale-100" : "-translate-x-full opacity-0 scale-95"
@@ -373,8 +300,6 @@ const Navbar = () => {
               >
                 {item} ▼
               </button>
-
-              {/* Mobil Dropdown Menü */}
               {dropdownOpen === item && (
                 <div className="w-full bg-gray-100 py-2 rounded-md transition-all duration-300">
                   <ul className="text-sm text-gray-700">
@@ -395,15 +320,12 @@ const Navbar = () => {
               )}
             </div>
           ))}
-
           <a href="#" className="hover:text-gray-700">QUESTIONS? (+36) 30 123 123</a>
-
           <div className="flex space-x-6">
             <FaUser className="text-2xl cursor-pointer hover:text-gray-600" />
             <FaSearch className="text-2xl cursor-pointer hover:text-gray-600" />
             <FaShoppingBag className="text-2xl cursor-pointer hover:text-gray-600" />
           </div>
-
           <div className="flex items-center space-x-2 cursor-pointer">
             <img src="/icons/logo.webp" alt="US Flag" className="w-6 h-6" />
             <span>US ▼</span>
@@ -413,5 +335,4 @@ const Navbar = () => {
     </>
   );
 };
-
 export default Navbar;

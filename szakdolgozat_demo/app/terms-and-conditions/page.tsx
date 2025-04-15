@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-// 📌 Dinamikusan generált dátum
 const getCurrentDate = () => {
   const today = new Date();
   return today.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
@@ -13,8 +12,7 @@ const TermsPage = () => {
   const router = useRouter();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [visibleSections, setVisibleSections] = useState<{ [key: string]: boolean }>({});
-
-  // 📌 Ellenőrzi, hogy melyik szakasz látható görgetés közben
+  
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll(".fade-in-section");
@@ -26,10 +24,8 @@ const TermsPage = () => {
           newVisibleSections[section.id] = true;
         }
       });
-
       setVisibleSections((prev) => ({ ...prev, ...newVisibleSections }));
     };
-
     window.addEventListener("scroll", handleScroll);
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
@@ -37,8 +33,6 @@ const TermsPage = () => {
 
   return (
     <div className="min-h-screen font-inter font-mono flex flex-col items-center bg-gray-50 px-6 py-12 relative">
-      
-      {/* 🔹 Bal felső sarok: Vissza gomb + Dropdown */}
       <div className="absolute top-6 left-6 group">
         <button
           onClick={() => router.push("/")}
@@ -68,18 +62,12 @@ const TermsPage = () => {
           </div>
         )}
       </div>
-
-      {/* 🔹 Fő cím */}
       <h1 className="text-5xl md:text-6xl font-extrabold text-black text-center mt-12 fade-in-section" id="title">
         TERMS & CONDITIONS
       </h1>
-
-      {/* 🔹 Frissítés dátuma */}
       <p className="text-orange-500 flex items-center text-sm mt-2 fade-in-section" id="update-date">
         ⏳ Last updated: {getCurrentDate()}
       </p>
-
-      {/* 🔹 Háttérképek - Váltakozva bal és jobb oldalon */}
       <div className="w-full flex justify-end">
         <div 
           className="w-1/2 h-96 bg-cover bg-center rounded-lg shadow-lg mt-8 fade-in-section"
@@ -87,14 +75,11 @@ const TermsPage = () => {
           style={{ backgroundImage: "url('/terms1.jpg')" }}
         ></div>
       </div>
-
-      {/* 🔹 Szöveg blokk */}
       <div className="max-w-4xl text-gray-800 mt-8 space-y-6 text-justify leading-relaxed">
         <p className="fade-in-section">
           Welcome to LIVETHEFIT. These Terms and Conditions outline the rules and regulations for the use of our website and services.
           Our mission is to ensure fairness, transparency, and the highest level of satisfaction for our users.
         </p>
-
         <div className="w-full flex justify-start">
           <div 
             className="w-1/2 h-96 bg-cover bg-center rounded-lg shadow-lg mt-8 fade-in-section"
@@ -102,8 +87,6 @@ const TermsPage = () => {
             style={{ backgroundImage: "url('/terms2.jpg')" }}
           ></div>
         </div>
-
-        {/* 🔥 Extra szöveg */}
         <p className="fade-in-section">
           By accessing or using our website, you agree to comply with these terms. If you do not agree with any part of these terms, please do not use our services. 
           Our commitment is to provide a safe, fair, and accessible platform for all our users. We value trust, and we strive to create an experience that aligns with our core values.
@@ -116,13 +99,10 @@ const TermsPage = () => {
             style={{ backgroundImage: "url('/terms3.jpg')" }}
           ></div>
         </div>
-
-        {/* 📌 1. Who We Are */}
         <h2 className="text-xl font-bold mt-6 fade-in-section">1. WHO WE ARE AND HOW TO CONTACT US</h2>
         <p className="fade-in-section">
-          <strong>1.1 Who we are.</strong> LIVETHEFIT USA Inc. is a company incorporated and registered in Delaware. Our registered office is at 1675 South State Street, Suite B, Dover, Kent County, Delaware 19901.
+          <strong>1.1 Who we are.</strong> LIVETHEFIT . is a company incorporated and registered in Delaware. Our registered office is at Budapest 1.
         </p>
-
         <p className="fade-in-section">
           <strong>1.2 How to contact us.</strong> If you have any questions, concerns, or feedback, we are always here to help.
           You can reach us via email at support@livethefit.com or through our online help center.
@@ -150,8 +130,6 @@ const TermsPage = () => {
           <strong>1.5 Future Updates.</strong> These terms may change over time to adapt to legal requirements and to improve user experience. 
           Please revisit this page regularly to stay informed.
         </p>
-
-        {/* 📌 Footer */}
         <footer className="w-full mt-12 border-t border-gray-300 pt-6 pb-4 text-center text-gray-600 text-sm">
           <p>
           <span className="text-orange-500 font-bold">© 2025</span>.

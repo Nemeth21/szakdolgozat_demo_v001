@@ -56,7 +56,6 @@ export const shirtCategories = [
   },
 ];
 
-// Szűrők adatai
 export const sizes = ["S", "M", "L", "XL"];
 export const colors = ["Black", "Green", "Red", "Gray", "Blue"];
 export const sortOptions = ["Price: Low to High", "Price: High to Low", "Relevancy", "Newest"];
