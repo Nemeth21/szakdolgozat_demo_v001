@@ -53,6 +53,7 @@ export const shirtCategories = [
     image: "/shirts/blue-tshirt.jpg",
     rating: 5,
     new: true,
+    
   },
 ];
 
